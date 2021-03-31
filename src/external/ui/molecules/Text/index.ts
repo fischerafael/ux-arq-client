@@ -10,6 +10,16 @@ export const Title = styled.h1`
 `
 
 export const SubTitle = styled.h2`
+    font-size: 1.25rem;
+    font-weight: normal;
+    line-height: 2rem;
+    letter-spacing: 0.05rem;
+
+    color: #333333;
+    text-align: center;
+`
+
+export const Paragraph = styled.p`
     font-size: 1rem;
     font-weight: normal;
     line-height: 2rem;

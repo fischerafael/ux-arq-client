@@ -1,4 +1,7 @@
 import React from 'react'
+
+import CustomLink from '../../molecules/CustomLink'
+
 import { DefaultButton } from '../../molecules/Button'
 import { FlexContainer } from '../../molecules/Flex'
 import { SubTitle, Title } from '../../molecules/Text'
@@ -18,9 +21,11 @@ const HeroSection = () => {
                     Projete Experiências Arquitetônicas
                 </Title>
                 <SubTitle>Crie atmosferas pensadas nos usuários</SubTitle>
-                <DefaultButton style={{ marginTop: '5rem' }}>
-                    Cadastre-se
-                </DefaultButton>
+                <CustomLink href="/register">
+                    <DefaultButton style={{ marginTop: '5rem' }}>
+                        Cadastre-se
+                    </DefaultButton>
+                </CustomLink>
             </FlexContainer>
         </FlexContainer>
     )
