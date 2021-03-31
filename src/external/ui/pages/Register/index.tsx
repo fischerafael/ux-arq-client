@@ -1,14 +1,18 @@
 import React from 'react'
 
-import Input from '../../molecules/Input'
-
 import { FlexContainer } from '../../molecules/Flex'
 import { SubTitle } from '../../molecules/Text'
-import { TwoColumnGrid } from '../../molecules/Grid'
+
 import { DefaultButton } from '../../molecules/Button'
 import CustomLink from '../../molecules/CustomLink'
 
+import DefaultInput from '../../molecules/Inputs/Default'
+import InputList from '../../molecules/Inputs/List'
+
 const Register = () => {
+    const [gender, setGender] = React.useState('')
+    console.log(gender)
+
     return (
         <FlexContainer
             as="main"
@@ -18,7 +22,7 @@ const Register = () => {
             }}
         >
             <FlexContainer
-                as="section"
+                as="form"
                 style={{
                     flexDirection: 'column',
                     maxWidth: '480px',
@@ -33,47 +37,51 @@ const Register = () => {
                 <SubTitle
                     style={{
                         width: '100%',
-                        textAlign: 'start',
+                        textAlign: 'center',
                         marginTop: '1rem'
                     }}
                 >
-                    Conta
+                    Cadastro
                 </SubTitle>
-                <Input
-                    label="usuário"
-                    error={'Campo Obrigatório'}
-                    type="text"
-                />
-                <Input label="email" error={'Campo Obrigatório'} type="text" />
-                <Input
-                    label="senha"
-                    error={'Campo Obrigatório'}
-                    type="password"
-                />
+
+                <DefaultInput type="text" label="Usuário" error="Falta" />
+                <DefaultInput type="email" label="Email" error="Falta" />
+                <DefaultInput type="password" label="Senha" error="Falta" />
 
                 <SubTitle
                     style={{
                         width: '100%',
-                        textAlign: 'start',
+                        textAlign: 'center',
                         marginTop: '1rem'
                     }}
                 >
-                    Dados Pessoais
+                    Perfil
                 </SubTitle>
 
-                <TwoColumnGrid as="section">
-                    <Input
-                        label="ano nascimento"
-                        error={'Preencha'}
+                <FlexContainer
+                    as="fieldset"
+                    style={{
+                        border: 'none',
+                        justifyContent: 'space-between',
+                        gap: '1rem'
+                    }}
+                >
+                    <DefaultInput
                         type="number"
+                        label="Ano de Nascimento"
+                        error="Falta"
                     />
-                    <Input
-                        label="genêro"
-                        error={'Selecione'}
-                        type="text"
-                        list={['masculino', 'feminino', 'outro']}
+                    <InputList
+                        options={[
+                            { value: 'masculino', label: 'Masculino' },
+                            { value: 'feminino', label: 'Feminino' },
+                            { value: 'outro', label: 'Outro' }
+                        ]}
+                        label="Gênero"
+                        value={gender}
+                        onChange={(e) => setGender(e.target.value)}
                     />
-                </TwoColumnGrid>
+                </FlexContainer>
 
                 <DefaultButton
                     style={{ marginTop: '3rem', alignSelf: 'flex-end' }}

@@ -2,10 +2,10 @@ import React from 'react'
 import { FlexContainer } from '../../Flex'
 
 interface Props {
-    list: string[]
+    options: { value: string; label: string }[]
 }
 
-const ListInput = ({ list }: Props) => {
+const ListInput = ({ options, value }: Props) => {
     return (
         <>
             <FlexContainer
@@ -25,7 +25,7 @@ const ListInput = ({ list }: Props) => {
                 <option value="" disabled hidden>
                     Selecione
                 </option>
-                {list.map((item, index) => (
+                {options.map((item, index) => (
                     <option key={index} value={item}>
                         {item}
                     </option>
