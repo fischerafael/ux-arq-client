@@ -2,10 +2,9 @@ import React from 'react'
 
 import { FlexContainer } from '../../molecules/Flex'
 import { SubTitle } from '../../molecules/Text'
-
 import { DefaultButton } from '../../molecules/Button'
-import CustomLink from '../../molecules/CustomLink'
 
+import CustomLink from '../../molecules/CustomLink'
 import DefaultInput from '../../molecules/Inputs/Default'
 import InputList from '../../molecules/Inputs/List'
 
