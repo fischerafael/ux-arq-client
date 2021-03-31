@@ -5,11 +5,14 @@ import { Paragraph } from '../../Text'
 
 interface Props {
     label: string
+    name: string
+    value: number | string
     type: 'text' | 'number' | 'password' | 'email'
+    onChange(e: any): void
     error?: string
 }
 
-const DefaultInput = ({ label, error, type }: Props) => {
+const DefaultInput = ({ name, label, error, type, value, onChange }: Props) => {
     return (
         <FlexContainer
             as="div"
@@ -34,7 +37,10 @@ const DefaultInput = ({ label, error, type }: Props) => {
             <FlexContainer
                 as="input"
                 id={label}
+                name={name}
                 type={type}
+                value={value}
+                onChange={onChange}
                 style={{
                     height: '3rem',
                     outline: 'none',

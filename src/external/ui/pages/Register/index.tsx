@@ -7,10 +7,20 @@ import { DefaultButton } from '../../molecules/Button'
 import CustomLink from '../../molecules/CustomLink'
 import DefaultInput from '../../molecules/Inputs/Default'
 import InputList from '../../molecules/Inputs/List'
+import useForm from '../../../hooks/useForm'
 
 const Register = () => {
-    const [gender, setGender] = React.useState('')
-    console.log(gender)
+    const { data, handleChange } = useForm({
+        username: '',
+        email: '',
+        password: '',
+        birth: new Date().getFullYear(),
+        gender: '',
+        secretKey: '',
+        role: 'admin'
+    })
+
+    console.log(data)
 
     return (
         <FlexContainer
@@ -36,22 +46,45 @@ const Register = () => {
                 <SubTitle
                     style={{
                         width: '100%',
-                        textAlign: 'center',
-                        marginTop: '1rem'
+                        textAlign: 'start',
+                        marginTop: '1rem',
+                        fontWeight: 'bold'
                     }}
                 >
-                    Cadastro
+                    Conta
                 </SubTitle>
 
-                <DefaultInput type="text" label="Usuário" error="Falta" />
-                <DefaultInput type="email" label="Email" error="Falta" />
-                <DefaultInput type="password" label="Senha" error="Falta" />
+                <DefaultInput
+                    type="text"
+                    label="Usuário"
+                    error="Falta"
+                    name="username"
+                    value={data.username}
+                    onChange={handleChange}
+                />
+                <DefaultInput
+                    type="email"
+                    label="Email"
+                    error="Falta"
+                    name="email"
+                    value={data.email}
+                    onChange={handleChange}
+                />
+                <DefaultInput
+                    type="password"
+                    label="Senha"
+                    error="Falta"
+                    name="password"
+                    value={data.password}
+                    onChange={handleChange}
+                />
 
                 <SubTitle
                     style={{
                         width: '100%',
-                        textAlign: 'center',
-                        marginTop: '1rem'
+                        textAlign: 'start',
+                        marginTop: '1rem',
+                        fontWeight: 'bold'
                     }}
                 >
                     Perfil
@@ -69,16 +102,20 @@ const Register = () => {
                         type="number"
                         label="Ano de Nascimento"
                         error="Falta"
+                        name="birth"
+                        value={data.birth}
+                        onChange={handleChange}
                     />
                     <InputList
                         options={[
-                            { value: 'masculino', label: 'Masculino' },
-                            { value: 'feminino', label: 'Feminino' },
-                            { value: 'outro', label: 'Outro' }
+                            { value: 'male', label: 'Masculino' },
+                            { value: 'female', label: 'Feminino' },
+                            { value: 'other', label: 'Outro' }
                         ]}
                         label="Gênero"
-                        value={gender}
-                        onChange={(e) => setGender(e.target.value)}
+                        name="gender"
+                        value={data.gender}
+                        onChange={handleChange}
                     />
                 </FlexContainer>
 

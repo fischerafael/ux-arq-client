@@ -6,12 +6,13 @@ import { Paragraph } from '../../Text'
 interface Props {
     label: string
     options: { value: string; label: string }[]
+    name: string
     error?: string
     value: string
     onChange(e: any): void
 }
 
-const InputList = ({ label, options, error, value, onChange }: Props) => {
+const InputList = ({ label, options, error, name, value, onChange }: Props) => {
     return (
         <FlexContainer
             as="div"
@@ -36,6 +37,7 @@ const InputList = ({ label, options, error, value, onChange }: Props) => {
             <FlexContainer
                 as="select"
                 value={value}
+                name={name}
                 onChange={onChange}
                 id={label}
                 style={{
