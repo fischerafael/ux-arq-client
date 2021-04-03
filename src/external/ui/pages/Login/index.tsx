@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useForm from '../../../hooks/useForm'
 
 import DefaultInput from '../../molecules/Inputs/Default'
@@ -16,6 +16,16 @@ const Login = () => {
         password: ''
     })
     const { setLoading } = useLoader()
+
+    const [isValid, setValid] = React.useState(false)
+
+    useEffect(() => {
+        if (data.email.length >= 6 && data.password.length >= 6) {
+            setValid(true)
+        } else {
+            setValid(false)
+        }
+    }, [data])
 
     async function handleUserLogin(e: any) {
         e.preventDefault()
@@ -83,6 +93,7 @@ const Login = () => {
                 <DefaultButton
                     type="submit"
                     style={{ marginTop: '3rem', alignSelf: 'flex-end' }}
+                    disabled={isValid ? false : true}
                 >
                     Entrar
                 </DefaultButton>
