@@ -16,4 +16,8 @@ const CustomAnchor = styled.a`
     text-decoration: none;
     cursor: pointer;
     height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
