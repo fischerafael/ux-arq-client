@@ -7,20 +7,11 @@ import { DefaultButton } from '../../molecules/Button'
 import CustomLink from '../../molecules/CustomLink'
 import DefaultInput from '../../molecules/Inputs/Default'
 import InputList from '../../molecules/Inputs/List'
-import useForm from '../../../hooks/useForm'
+
+import useAuth from '../../../hooks/useAuth'
 
 const Register = () => {
-    const { data, handleChange } = useForm({
-        username: '',
-        email: '',
-        password: '',
-        birth: new Date().getFullYear(),
-        gender: '',
-        secretKey: '',
-        role: 'admin'
-    })
-
-    console.log(data)
+    const { data, handleChange, handleCreateUser } = useAuth(defaultData)
 
     return (
         <FlexContainer
@@ -121,6 +112,7 @@ const Register = () => {
 
                 <DefaultButton
                     style={{ marginTop: '3rem', alignSelf: 'flex-end' }}
+                    onClick={handleCreateUser}
                 >
                     Próximo
                 </DefaultButton>
@@ -130,3 +122,13 @@ const Register = () => {
 }
 
 export default Register
+
+const defaultData = {
+    username: '',
+    email: '',
+    password: '',
+    birth: new Date().getFullYear(),
+    gender: '',
+    secretKey: '',
+    role: 'admin'
+}

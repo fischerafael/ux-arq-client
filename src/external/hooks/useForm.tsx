@@ -9,6 +9,7 @@ function useForm<T>(defaultData: T) {
 
     return {
         handleChange,
+        setData,
         data
     }
 }

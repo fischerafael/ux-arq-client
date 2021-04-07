@@ -1,45 +1,14 @@
-import React, { useEffect } from 'react'
-import useForm from '../../../hooks/useForm'
-
-import DefaultInput from '../../molecules/Inputs/Default'
-
 import { FlexContainer } from '../../molecules/Flex'
 import { SubTitle } from '../../molecules/Text'
 import { DefaultButton } from '../../molecules/Button'
+
+import DefaultInput from '../../molecules/Inputs/Default'
 import CustomLink from '../../molecules/CustomLink'
-import { httpClient } from '../../../../services'
-import useLoader from '../../../hooks/useLoader'
+
+import useAuth from '../../../hooks/useAuth'
 
 const Login = () => {
-    const { data, handleChange } = useForm({
-        email: '',
-        password: ''
-    })
-    const { setLoading } = useLoader()
-
-    const [isValid, setValid] = React.useState(false)
-
-    useEffect(() => {
-        if (data.email.length >= 6 && data.password.length >= 6) {
-            setValid(true)
-        } else {
-            setValid(false)
-        }
-    }, [data])
-
-    async function handleUserLogin(e: any) {
-        e.preventDefault()
-        setLoading(true)
-
-        try {
-            const response = await httpClient.post('/sessions', data)
-
-            console.log(response.data)
-            setLoading(false)
-        } catch (e) {
-            setLoading(false)
-        }
-    }
+    const { data, handleLogin, handleChange } = useAuth(defaultData)
 
     return (
         <FlexContainer
@@ -57,7 +26,7 @@ const Login = () => {
                     padding: '2rem',
                     background: 'white'
                 }}
-                onSubmit={handleUserLogin}
+                onSubmit={handleLogin}
             >
                 <CustomLink href="/">
                     <img src="/ui/logo-header-nav.svg" alt="Ux.Arq" />
@@ -77,8 +46,8 @@ const Login = () => {
                 <DefaultInput
                     type="email"
                     label="Email"
-                    name="email"
-                    value={data.email}
+                    name="identifier"
+                    value={data.identifier}
                     onChange={handleChange}
                 />
 
@@ -93,7 +62,6 @@ const Login = () => {
                 <DefaultButton
                     type="submit"
                     style={{ marginTop: '3rem', alignSelf: 'flex-end' }}
-                    disabled={isValid ? false : true}
                 >
                     Entrar
                 </DefaultButton>
@@ -103,3 +71,8 @@ const Login = () => {
 }
 
 export default Login
+
+const defaultData = {
+    identifier: '',
+    password: ''
+}
