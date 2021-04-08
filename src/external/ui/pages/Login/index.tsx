@@ -26,7 +26,6 @@ const Login = () => {
                     padding: '2rem',
                     background: 'white'
                 }}
-                onSubmit={handleLogin}
             >
                 <CustomLink href="/">
                     <img src="/ui/logo-header-nav.svg" alt="Ux.Arq" />
@@ -62,6 +61,10 @@ const Login = () => {
                 <DefaultButton
                     type="submit"
                     style={{ marginTop: '3rem', alignSelf: 'flex-end' }}
+                    onClick={(e) => {
+                        e.preventDefault()
+                        handleLogin()
+                    }}
                 >
                     Entrar
                 </DefaultButton>

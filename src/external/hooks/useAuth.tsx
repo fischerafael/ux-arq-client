@@ -1,22 +1,28 @@
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+
 import { httpClient } from '../../services'
 
 import useForm from './useForm'
 import useLoader from './useLoader'
 
 function useAuth<T>(defaultData: T) {
-    const { data, handleChange, setData } = useForm(defaultData)
+    const route = useRouter()
 
+    const { data, handleChange, setData } = useForm(defaultData)
     const { setLoading } = useLoader()
 
-    async function handleCreateUser(e: any) {
-        e.preventDefault()
+    const [credentials, setCredentials] = useState({})
+
+    async function handleCreateUser() {
         setLoading(true)
         try {
             const response = await httpClient.post('/auth/local/register', {
                 ...data,
                 appRole: 'client'
             })
-            console.log(response)
+            setCredentials(response.data)
+            route.push('/dashboard')
             setLoading(false)
         } catch (e) {
             console.log(e)
@@ -25,14 +31,15 @@ function useAuth<T>(defaultData: T) {
         }
     }
 
-    async function handleLogin(e: any) {
-        e.preventDefault()
+    async function handleLogin() {
         setLoading(true)
         try {
             const response = await httpClient.post('/auth/local', {
                 ...data
             })
-            console.log(response)
+            console.log(response.data)
+            setCredentials(response.data)
+            route.push('/dashboard')
             setLoading(false)
         } catch (e) {
             console.log(e)
@@ -45,7 +52,9 @@ function useAuth<T>(defaultData: T) {
         data,
         handleChange,
         handleCreateUser,
-        handleLogin
+        handleLogin,
+        setCredentials,
+        credentials
     }
 }
 
