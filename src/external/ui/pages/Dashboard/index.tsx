@@ -1,11 +1,12 @@
+import { useRouter } from 'next/router'
 import useAuth from '../../../hooks/useAuth'
+import useUnauthorize from '../../../hooks/useUnauthorize'
 
 import NavBar from '../../templates/NavBar'
 
 const Dashboard = () => {
-    const { credentials, setCredentials } = useAuth({})
-
-    console.log('credentials from dashboard', credentials)
+    useUnauthorize()
+    const { credentials } = useAuth()
 
     return (
         <>

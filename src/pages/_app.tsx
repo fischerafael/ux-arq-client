@@ -1,7 +1,9 @@
 import { ThemeProvider } from 'styled-components'
+
 import { GlobalStyle } from '../styles/global-style'
 import { theme } from '../styles/theme'
 
+import { CredentialsProvider } from '../usecases/contexts/credentialsContext'
 import { GlobalLoaderProvider } from '../usecases/contexts/globalLoaderContext'
 
 export default function App({ Component, pageProps }) {
@@ -10,7 +12,9 @@ export default function App({ Component, pageProps }) {
             <GlobalStyle />
             <ThemeProvider theme={theme}>
                 <GlobalLoaderProvider>
-                    <Component {...pageProps} />
+                    <CredentialsProvider>
+                        <Component {...pageProps} />
+                    </CredentialsProvider>
                 </GlobalLoaderProvider>
             </ThemeProvider>
         </>

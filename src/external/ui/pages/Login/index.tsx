@@ -6,9 +6,13 @@ import DefaultInput from '../../molecules/Inputs/Default'
 import CustomLink from '../../molecules/CustomLink'
 
 import useAuth from '../../../hooks/useAuth'
+import useLoader from '../../../hooks/useLoader'
 
 const Login = () => {
+    const { isLoading, LoadingPage } = useLoader()
     const { data, handleLogin, handleChange } = useAuth(defaultData)
+
+    if (isLoading) return <LoadingPage />
 
     return (
         <FlexContainer

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { FlexContainer } from '../../molecules/Flex'
 import { SubTitle } from '../../molecules/Text'
 import { DefaultButton } from '../../molecules/Button'
@@ -9,9 +7,13 @@ import DefaultInput from '../../molecules/Inputs/Default'
 import InputList from '../../molecules/Inputs/List'
 
 import useAuth from '../../../hooks/useAuth'
+import useLoader from '../../../hooks/useLoader'
 
 const Register = () => {
+    const { isLoading, LoadingPage } = useLoader()
     const { data, handleChange, handleCreateUser } = useAuth(defaultData)
+
+    if (isLoading) return <LoadingPage />
 
     return (
         <FlexContainer

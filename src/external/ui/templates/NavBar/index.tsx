@@ -1,9 +1,12 @@
-import React from 'react'
 import { DefaultButton } from '../../molecules/Button'
-import CustomLink from '../../molecules/CustomLink'
 import { FlexContainer } from '../../molecules/Flex'
 
+import CustomLink from '../../molecules/CustomLink'
+import useAuth from '../../../hooks/useAuth'
+
 const NavBar = () => {
+    const { credentials, handleLogout } = useAuth()
+
     return (
         <FlexContainer as="header" style={{ height: '15vh' }}>
             <FlexContainer
@@ -18,9 +21,15 @@ const NavBar = () => {
                     <img src="/ui/logo-header-nav.svg" alt="Logo UX.Arq" />
                 </CustomLink>
 
-                <CustomLink href="/login">
-                    <DefaultButton>Entrar</DefaultButton>
-                </CustomLink>
+                {credentials?.jwt ? (
+                    <DefaultButton onClick={handleLogout}>Sair</DefaultButton>
+                ) : (
+                    <CustomLink href="/login">
+                        <DefaultButton onClick={handleLogout}>
+                            Entrar
+                        </DefaultButton>
+                    </CustomLink>
+                )}
             </FlexContainer>
         </FlexContainer>
     )
