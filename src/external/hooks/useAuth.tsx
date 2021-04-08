@@ -4,7 +4,6 @@ import { httpClient } from '../../services'
 import useForm from './useForm'
 import useLoader from './useLoader'
 import useCredentials from './useCredentials'
-import { useEffect } from 'react'
 
 function useAuth<T>(defaultData?: T) {
     const route = useRouter()
@@ -12,6 +11,8 @@ function useAuth<T>(defaultData?: T) {
     const { data, handleChange, setData } = useForm(defaultData)
     const { setLoading } = useLoader()
     const { credentials, setCredentials } = useCredentials()
+
+    console.log('credentials from useAuth', credentials)
 
     async function handleLogin() {
         setLoading(true)
@@ -24,8 +25,8 @@ function useAuth<T>(defaultData?: T) {
             setLoading(false)
         } catch (e) {
             console.log(e)
-            setLoading(false)
             setData(defaultData)
+            setLoading(false)
         }
     }
 
@@ -47,6 +48,7 @@ function useAuth<T>(defaultData?: T) {
         } catch (e) {
             console.log(e)
             setData(defaultData)
+            setLoading(false)
         }
     }
 

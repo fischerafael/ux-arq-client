@@ -28,3 +28,13 @@ export const Paragraph = styled.p`
     color: #333333;
     text-align: center;
 `
+
+export const Text = styled.span`
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 2rem;
+    letter-spacing: 0.05rem;
+
+    color: #333333;
+    text-align: center;
+`

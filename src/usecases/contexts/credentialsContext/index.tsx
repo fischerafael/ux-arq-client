@@ -16,15 +16,7 @@ interface Props {
 const CredentialsContext = createContext({} as Props)
 
 const CredentialsProvider = ({ children }) => {
-    const [credentials, setCredentials] = useState({
-        jwt: '',
-        user: {
-            appRole: '',
-            id: '',
-            premium: false,
-            username: ''
-        }
-    })
+    const [credentials, setCredentials] = useState(DEFAULT_CREDENTIALS)
 
     const value = { credentials, setCredentials }
 
@@ -36,3 +28,13 @@ const CredentialsProvider = ({ children }) => {
 }
 
 export { CredentialsContext, CredentialsProvider }
+
+const DEFAULT_CREDENTIALS = {
+    jwt: '',
+    user: {
+        appRole: '',
+        id: '',
+        premium: true,
+        username: ''
+    }
+}

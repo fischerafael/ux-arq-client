@@ -1,13 +1,12 @@
 import styled from 'styled-components'
 
-export const TwoColumnGrid = styled.div`
+export const GridContainer = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem;
-
     align-items: center;
     justify-content: center;
-
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1024px;
     width: 100%;
-    height: 100%;
+    padding: 1rem;
 `

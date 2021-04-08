@@ -3,6 +3,7 @@ import { FlexContainer } from '../../molecules/Flex'
 
 import CustomLink from '../../molecules/CustomLink'
 import useAuth from '../../../hooks/useAuth'
+import { Text } from '../../molecules/Text'
 
 const NavBar = () => {
     const { credentials, handleLogout } = useAuth()
